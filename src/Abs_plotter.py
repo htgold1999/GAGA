@@ -15,21 +15,20 @@ import math
 from math import *
 import matplotlib.pyplot as plt
 
-import scipy.stats as sc
-import scipy.signal as ss
+
 import cmath #
 j=(cmath.sqrt(-1))
 
 import os
 import matplotlib
 
-from Find_reflectance.Epsilon_Creator import Epsilon_Creator
-from Find_reflectance.Magnetooptic2Magnetooptic import *
-from Find_reflectance.magnetophotonicCrystal import magnetophotonicCrystal
-from Find_reflectance.Refractive_index_data import *
+from Epsilon_Creator import Epsilon_Creator
+from Magnetooptic2Magnetooptic import *
+from magnetophotonicCrystal import magnetophotonicCrystal
+from Data import *
 from Data_frame_creator import material_dict_df
 
-from scipy.optimize import curve_fit
+
 import ast
 
 
@@ -165,30 +164,9 @@ def Reflectivity_plotter(x,color,lambda_,theta):
 
 lambda_=np.linspace(10*(10**-6),2.25*(10**-5),600)
 
-lambda_=np.linspace(2.1*(10**-6),11*(10**-5),2500)
-
 omega=2*pi*c/lambda_
 Energy=hbar*omega/eV
-# omega=np.linspace(9.4183*(10**13),2.3844*(10**14),500)
-# lambda_ =2*pi*c/omega
 
-
-
-# data=np.genfromtxt('ppol_R_E_theta.dat');
-# E = data[1:-1,0]
-# omega = eV*E/hbar  # Angular frequency [rad/s].
-# k = omega/c  # Wavevector in air [1/m].
-# lambda_ = 2*pi/k 
-
-# R_neg55=data[1:-1,7]
-# R_55=data[1:-1,29]
-# plt.plot(E,R_neg55,color='r',label="Simo's 55 Deg Reflectivity")
-# plt.plot(E,R_55,'r--',label="Simo's -55 Deg Reflectivity")
-# plt.legend()
-
-# negcomsol_data=np.genfromtxt('weyl_stack_theta=-55_ref_data_vs_energy_.txt')
-# negrefl=negcomsol_data[:,1]
-# negE_comsol=negcomsol_data[:,0]
 
 
 
