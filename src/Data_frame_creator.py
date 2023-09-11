@@ -12,13 +12,10 @@ import pandas as pd
 import numpy as np
 
 ###NOTE Be sure to name all refractive index .xls files with their material name matching the one in material_dict (located in Epsilon_Creator.py )
-## if the material is isotropic, the dataframe (which extracts from a csv) only needs two columns: wavelength (nm), and epsilon value
-## if the material is anisotropic, the dataframe (which extracts from a csv) needs wavelength, epsilon transverse, epsilon, longitudinal, off diagonal (g) components
 
 current_working_directory = os.getcwd()
 
-#path =current_working_directory+'/src/Find_reflectance/Refractive_index_data/' 
-path =current_working_directory+'/Find_reflectance/Refractive_index_data/' 
+path =current_working_directory+'/Data/' 
 os.chdir(path)
 
 def Data_frame_creator(path):
