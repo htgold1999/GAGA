@@ -14,7 +14,9 @@ from math import *
 import matplotlib.pyplot as plt
 import cmath #
 j=(cmath.sqrt(-1))
+import scipy 
 
+from scipy.interpolate import interp1d
 
 
       # Physical constants.
@@ -231,6 +233,28 @@ class Epsilon_Creator():
         # g=material_df["g"][idx]
        
         return eps_t,eps_l, g 
+    def weyl_material_1_b0_eps(self,lambda_):
+        material_df=self.df["weyl_material_1_b0"] # need to get refractive index given pandas dataframe
+        real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
+        imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
+        eps_t = real_num_t +j*imag_num_t
+        
+        real_num_l=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_L_R"])
+        imag_num_l=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_L_I"])
+        eps_l = real_num_l +j*imag_num_l
+        
+        g = np.interp(lambda_,material_df["Wavelength"],material_df["g"])
+        
+        
+        
+        # wavelength_list=self.df_to_wavelength_list(material_df)
+        # idx,_=self.find_nearest(wavelength_list, lambda_)
+        # eps_t=material_df["Epsilon_T_R"][idx] + j*material_df["Epsilon_T_I"][idx] 
+        
+        # eps_l=material_df["Epsilon_L_R"][idx] + j*material_df["Epsilon_L_I"][idx] 
+        # g=material_df["g"][idx]
+       
+        return eps_t,eps_l, g 
     def weyl_material_1_EF_01_eps (self,lambda_):
         # lambda_micrometer=lambda_*1000000
         material_df=self.df["weyl_material_1_EF=0.1"] # need to get refractive index given pandas dataframe
@@ -323,7 +347,28 @@ class Epsilon_Creator():
         # g=material_df["g"][idx]
         
         return eps_t,eps_l, g # z and x are transverse and longitudinal components (respectively) of the dielectric tensor see source https://dspace.mit.edu/bitstream/handle/1721.1/132930/PhysRevB.102.165417.pdf?sequence=1
-    
+    def weyl_material_2_b0_eps(self,lambda_):
+        material_df=self.df["weyl_material_2_b0"] # need to get refractive index given pandas dataframe
+        real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
+        imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
+        eps_t = real_num_t +j*imag_num_t
+        
+        real_num_l=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_L_R"])
+        imag_num_l=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_L_I"])
+        eps_l = real_num_l +j*imag_num_l
+        
+        g = np.interp(lambda_,material_df["Wavelength"],material_df["g"])
+        
+        
+        
+        # wavelength_list=self.df_to_wavelength_list(material_df)
+        # idx,_=self.find_nearest(wavelength_list, lambda_)
+        # eps_t=material_df["Epsilon_T_R"][idx] + j*material_df["Epsilon_T_I"][idx] 
+        
+        # eps_l=material_df["Epsilon_L_R"][idx] + j*material_df["Epsilon_L_I"][idx] 
+        # g=material_df["g"][idx]
+       
+        return eps_t,eps_l, g 
     def weyl_material_2_EF_01_eps (self,lambda_):
         # lambda_micrometer=lambda_*1000000
         material_df=self.df["weyl_material_2_EF=0.1"] # need to get refractive index given pandas dataframe
@@ -446,23 +491,7 @@ class Epsilon_Creator():
             eps_l=10000
             g=0
         return eps_t,eps_l, g
-    def weyl_material_6_eps (self,lambda_):
-        lambda_micrometer=lambda_*1000000
-        if self.dont_care:
-            material_df=self.df["weyl_material_6"] # need to get refractive index given pandas dataframe
-            wavelength_list=self.df_to_wavelength_list(material_df)
-            idx,_=self.find_nearest(wavelength_list, lambda_)
-            eps_t=material_df["Epsilon_T_R"][idx] + j*material_df["Epsilon_T_I"][idx] 
-            # print("eps_t")
-            # print(eps_t)
-            eps_l=material_df["Epsilon_L_R"][idx] + j*material_df["Epsilon_L_I"][idx] 
-            g=material_df["g"][idx]
-        else:
-            print("Other weyl_material_6_eps wavelengths not coded yet")
-            eps_t=10000
-            eps_l=10000
-            g=0
-        return eps_t,eps_l, g
+    
     def Ag_eps(self,lambda_):
         lambda_micrometer=lambda_*1000000
         if  0.1879<= lambda_micrometer<=1.9370 or 2.480e-06<= lambda_micrometer<=248 or 0.270<= lambda_micrometer<=24.9 or self.dont_care:
@@ -489,16 +518,12 @@ class Epsilon_Creator():
         eps_Air=1
         
         return eps_Air
-
+   
     def material_dict(self):
-
         material_dict = { 0:{"Air": {"function": self.Air, "isotropic":1}},1:{"TiO2": {"function": self.TiO2_eps, "isotropic":1}, "SiO2": {"function":self.SiO2_eps,"isotropic":1}}, 2:{'MgO': {"function":self.MgO_eps,"isotropic":1}}, 
-                          3:{"Ag": {"function":self.Ag_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1}},4:{"Co2MnGa": {"function":self.Co2MnGa_eps,"isotropic":0}},
-                          5:{"weyl_material_1_EF_02": {"function":self.weyl_material_1_EF_02_eps,"isotropic":0},"weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},"weyl_material_1_EF_01": {"function":self.weyl_material_1_EF_01_eps,"isotropic":0},"weyl_material_1_EF_007": {"function":self.weyl_material_1_EF_007_eps,"isotropic":0},"weyl_material_2_EF_02": {"function":self.weyl_material_2_EF_02_eps,"isotropic":0},
-                             "weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0},
-                          "weyl_material_2_EF_01": {"function":self.weyl_material_2_EF_01_eps,"isotropic":0},"weyl_material_2_EF_007": {"function":self.weyl_material_2_EF_007_eps,"isotropic":0}},6:{ "weyl_material_3": {"function":self.weyl_material_3_eps,"isotropic":0}},
-                          7:{ "weyl_material_4": {"function":self.weyl_material_4_eps,"isotropic":0}},8:{"weyl_material_5": {"function":self.weyl_material_5_eps,"isotropic":0}}, 9:{"Ge":{"function":self.Ge_eps,"isotropic":1}}, 10:{"weyl_material_6":{"function":self.weyl_material_6_eps,"isotropic":0}}} #can have more information. isotropic:1 means it isotropic, isotropic:0 means it anisotropic
-       
+                          3:{"Ag": {"function":self.Ag_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1}},
+                          4:{"weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},
+                             "weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0}}}
         
     
        
@@ -508,49 +533,38 @@ class Epsilon_Creator():
         return material_dict
     def create_epsilon(self):
         material_dict=self.material_dict()
-        # if len(self.material_dict_indices)!=self.N:
-        #     raise ValueError("Number of layers 'N' must match length of'material_dict_indices' ")
         epsilon=np.zeros((self.N,3),dtype=np.complex_)
-        #epsilon=np.zeros((self.N,3))
-        #lambda_ = 2*pi*c/self.omega
+      
         count=0
         flat_list = [item for sublist in self.material_dict_indices for item in sublist]
-    
-        for ii in flat_list: ##Fix this for new material dictionary
-     
        
+        for ii in flat_list: 
+           
             if material_dict[ ii[0]][ ii[1]]["isotropic"]==1:
                 g=0
                 value=material_dict[ ii[0]][ ii[1]]["function"](self.lambda_)
-                # print("value")
-                # print(value)
+                
                 epsilon[count][0]= value
-                # print("value")
-                # print(value)
+                
                 epsilon[count][1]= value
                 if ii[2]=='g':
                     epsilon[count][2]= g
                 if ii[2]=='-g':
                     epsilon[count][2]= -g
-                # print("g")
-                # print(g)
+             
                 
             elif material_dict[ ii[0]][ ii[1]]["isotropic"]==0:
                  eps_T,eps_L, g=material_dict[ ii[0]][ ii[1]]["function"](self.lambda_)
-                 # print("eps_T")
-                 # print(eps_T)
+                
                  epsilon[count][0]= eps_T
-                 # print("eps_T")
-                 # print(epsilon[count][0])
+               
                  epsilon[count][1]= eps_L
-                 # print("eps_L")
-                 # print(epsilon[count][1])
+                 
                  if ii[2]=='g':
                      epsilon[count][2]= g
                  if ii[2]=='-g':
                      epsilon[count][2]= -g
-                 # print("g")
-                 # print(g)
+                
                  
             else:
                 epsilon[count][0]= 0
@@ -559,5 +573,7 @@ class Epsilon_Creator():
             count+=1
         
         return np.round_(epsilon,decimals = 4)
+    
+    
     
     
