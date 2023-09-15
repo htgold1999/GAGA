@@ -22,26 +22,16 @@ from Data_frame_creator import material_dict_df
 
 
 
-# Physical constants.
-hbar = 1.05457e-34
-eV = 1.60218e-19
-c = 2.99792e8
-k_B = 1.38065e-23
-sigma = 5.67037e-8
-m_e = 9.10938e-31
-epsilon_0 = 8.85419e-12
 
 
 # TOTAL ITERATIONS
 n_iter = 30   
-# bits
-n_bits = 6
 # SIZE OF POPULATION
 n_pop = 40 
 # CROSSOVER RATE
 r_cross = 0.9
 # MUTATION RATE
-r_mut = 1.0 / float(n_bits)
+r_mut = 1.0 / 6
 # G FLIP PROBABILITY
 g_flip= 0.5
 
