@@ -44,7 +44,7 @@ epsilon_0 = 8.85419e-12
 
 
 
-def Reflectivity_plotter(x,lambda_,theta):
+def Abs_plotter(x,lambda_,theta):
         
     N=x[0][0]
 
