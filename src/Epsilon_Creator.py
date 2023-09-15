@@ -5,19 +5,6 @@ Created on Sun Oct  2 22:41:12 2022
 @author: Hannah Gold
 """
 
-# from magnetophotonicCrystal import magnetophotonicCrystal
-import os
-# from Find_reflectance.Magnetooptic2Magnetooptic import *
-# from Find_reflectance.magnetophotonicCrystal import magnetophotonicCrystal
-# from Find_reflectance.Refractive_index_data import *
-
-# from Magnetooptic2Magnetooptic import *
-# from magnetophotonicCrystal import magnetophotonicCrystal
-
-# current_working_directory = os.getcwd()
-# print("this path",current_working_directory)
-# path =current_working_directory
-# os.chdir(path)
 
 
 #%%
@@ -27,9 +14,7 @@ from math import *
 import matplotlib.pyplot as plt
 import cmath #
 j=(cmath.sqrt(-1))
-import scipy 
 
-from scipy.interpolate import interp1d
 
 
       # Physical constants.
@@ -504,24 +489,9 @@ class Epsilon_Creator():
         eps_Air=1
         
         return eps_Air
-    # def material_dict(self):
-    #     material_dict = { "Air": {"function": self.Air, "isotropic":1},"TiO2": {"function": self.TiO2_eps, "isotropic":1}, "SiO2": {"function":self.SiO2_eps,"isotropic":1}, 'MgO': {"function":self.MgO_eps,"isotropic":1}, 
-    #                      "Co2MnGa": {"function":self.Co2MnGa_eps,"isotropic":0}, "Ag": {"function":self.Ag_eps,"isotropic":1}, "Au": {"function":self.Au_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1},
-    #                      "weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},"weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0}, "weyl_material_3": {"function":self.weyl_material_3_eps,"isotropic":0},
-    #                      "weyl_material_4": {"function":self.weyl_material_4_eps,"isotropic":0},"weyl_material_5": {"function":self.weyl_material_5_eps,"isotropic":0}} #can have more information. isotropic:1 means it isotropic, isotropic:0 means it anisotropic
-    #     return material_dict
+
     def material_dict(self):
-        # material_dict = { 0:{"Air": {"function": self.Air, "isotropic":1}},1:{"TiO2": {"function": self.TiO2_eps, "isotropic":1}, "SiO2": {"function":self.SiO2_eps,"isotropic":1}}, 2:{'MgO': {"function":self.MgO_eps,"isotropic":1}, 
-        #                   "Ag": {"function":self.Ag_eps,"isotropic":1}, "Au": {"function":self.Au_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1}},3:{"Co2MnGa": {"function":self.Co2MnGa_eps,"isotropic":0},
-        #                   "weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},"weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0}, "weyl_material_3": {"function":self.weyl_material_3_eps,"isotropic":0},
-        #                   "weyl_material_4": {"function":self.weyl_material_4_eps,"isotropic":0},"weyl_material_5": {"function":self.weyl_material_5_eps,"isotropic":0}}} #can have more information. isotropic:1 means it isotropic, isotropic:0 means it anisotropic
-        
-        #Makes sense to do it this way to avoid weyl_material_3+
-        # material_dict = { 0:{"Air": {"function": self.Air, "isotropic":1}},1:{"TiO2": {"function": self.TiO2_eps, "isotropic":1}, "SiO2": {"function":self.SiO2_eps,"isotropic":1}}, 2:{'MgO': {"function":self.MgO_eps,"isotropic":1}}, 
-        #                   3:{"Ag": {"function":self.Ag_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1}},4:{"Co2MnGa": {"function":self.Co2MnGa_eps,"isotropic":0}},
-        #                   5:{"weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},"weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0}},
-        #                   6:{ "weyl_material_3": {"function":self.weyl_material_3_eps,"isotropic":0}},
-        #                   7:{ "weyl_material_4": {"function":self.weyl_material_4_eps,"isotropic":0}},8:{"weyl_material_5": {"function":self.weyl_material_5_eps,"isotropic":0}}, 9:{"Ge":{"function":self.Ge_eps,"isotropic":1}}, 10:{"weyl_material_6":{"function":self.weyl_material_6_eps,"isotropic":0}}} #can have more information. isotropic:1 means it isotropic, isotropic:0 means it anisotropic
+
         material_dict = { 0:{"Air": {"function": self.Air, "isotropic":1}},1:{"TiO2": {"function": self.TiO2_eps, "isotropic":1}, "SiO2": {"function":self.SiO2_eps,"isotropic":1}}, 2:{'MgO': {"function":self.MgO_eps,"isotropic":1}}, 
                           3:{"Ag": {"function":self.Ag_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1}},4:{"Co2MnGa": {"function":self.Co2MnGa_eps,"isotropic":0}},
                           5:{"weyl_material_1_EF_02": {"function":self.weyl_material_1_EF_02_eps,"isotropic":0},"weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},"weyl_material_1_EF_01": {"function":self.weyl_material_1_EF_01_eps,"isotropic":0},"weyl_material_1_EF_007": {"function":self.weyl_material_1_EF_007_eps,"isotropic":0},"weyl_material_2_EF_02": {"function":self.weyl_material_2_EF_02_eps,"isotropic":0},
@@ -531,21 +501,7 @@ class Epsilon_Creator():
        
         
     
-        #No TiO2 yes HfO2
-        # material_dict = { 0:{"Air": {"function": self.Air, "isotropic":1}},1:{"SiO2": {"function":self.SiO2_eps,"isotropic":1}}, 2:{'MgO': {"function":self.MgO_eps,"isotropic":1},"HfO2": {"function":self.HfO2_eps,"isotropic":1}}, 
-        #                   3:{"Ag": {"function":self.Ag_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1}},4:{"Co2MnGa": {"function":self.Co2MnGa_eps,"isotropic":0}},
-        #                   5:{"weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},"weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0}},6:{ "weyl_material_3": {"function":self.weyl_material_3_eps,"isotropic":0}},
-        #                   7:{ "weyl_material_4": {"function":self.weyl_material_4_eps,"isotropic":0}},8:{"weyl_material_5": {"function":self.weyl_material_5_eps,"isotropic":0}}, 9:{"Ge":{"function":self.Ge_eps,"isotropic":1}}, 10:{"weyl_material_6":{"function":self.weyl_material_6_eps,"isotropic":0}}} #can have more information. isotropic:1 means it isotropic, isotropic:0 means it anisotropic
-        
-        #############################TEST/ trouble shooting
-        # material_dict = { 0:{"Air": {"function": self.Air, "isotropic":1}},1:{"TiO2": {"function": self.TiO2_eps, "isotropic":1}, "SiO2": {"function":self.SiO2_eps,"isotropic":1}}, 2:{'MgO': {"function":self.MgO_eps,"isotropic":1}}, 3:{"Au": {"function":self.Au_eps,"isotropic":1}},4:{"Co2MnGa": {"function":self.Co2MnGa_eps,"isotropic":0},
-        #                   "weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},"weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0}},5:{ "weyl_material_3": {"function":self.weyl_material_3_eps,"isotropic":0},
-        #                   "weyl_material_4": {"function":self.weyl_material_4_eps,"isotropic":0},"weyl_material_5": {"function":self.weyl_material_5_eps,"isotropic":0}}} #can have more information. isotropic:1 means it isotropic, isotropic:0 means it anisotropic
-        # 0:Air
-        # 1:Dielectric
-        # 2:Isotropic Metal
-        # 3:Weyl Semi-metal
-        # 4:Doped Semi-conductor (not here yet)
+       
         
         
         
@@ -559,15 +515,9 @@ class Epsilon_Creator():
         #lambda_ = 2*pi*c/self.omega
         count=0
         flat_list = [item for sublist in self.material_dict_indices for item in sublist]
-        # print("flat_list")
-        # print(flat_list)
+    
         for ii in flat_list: ##Fix this for new material dictionary
-            # print("material")
-            # print(ii)
-            # print("number")
-            # print(ii[1])
-            # print('material_dict[ ii[0]][ ii[1]]')
-            # print(material_dict[ ii[0]][ ii[1]])
+     
        
             if material_dict[ ii[0]][ ii[1]]["isotropic"]==1:
                 g=0
@@ -611,49 +561,3 @@ class Epsilon_Creator():
         return np.round_(epsilon,decimals = 4)
     
     
-    
-    
-#     # TEST BENCH
-# ############################################
-# omega=30  
-# N=2
-# material_dict_indices=["SiO2","SiO2"]
-# x=Epsilon_Creator(omega,N,material_dict_indices)    
-# lambda_=1910*(10**-9)
-# a=x.Au_eps(lambda_)  
-
-# a0=1000000*400*(10**-9)
-###################################################
-##TO DO: need to find a quicker way to compare the lambda input with that of the
-##dataframe (involves too many steps)
-
-
-# data = np.genfromtxt('bulk_eps_ef60meV_fine.dat')#, skip_header=1,skip_footer=1,names=True,dtype=None, delimiter=' ')  # Dielectric tensor of CMG.
-# E = data[:,0]  # Energy [eV].
-# omega = eV*E/hbar  # Angular frequency [rad/s].
-# k = omega/c  # Wavevector in air [1/m].
-# lambda_ = 2*pi/k 
-# lambda_ = np.linspace(300,700,445)*(10**-9)
-# omega=2*pi*c/lambda_
-# #omega=[55]
-# N=14
-# material_dict_indices = [1,2,1,2,1,2,1,2,1,2,1,2,1,2]
-# if len(material_dict_indices)!=N:
-#         print("Number of layers 'N' must match length of'material_dict_indices' ")
-# material_dict = { 1: {"material": TiO2_eps, "isotropic":1}, 2: {"material":SiO2_eps,"isotropic":1}} #can have more information. isotropic:1 means it isotropic, isotropic:0 means it anisotropic
-
-# theta = np.array([0])  # Angle of incidence [deg].
-# theta = theta*(pi/180)  # Angle of incidence [rad].
-# t=[80e-9,115e-9,80e-9,115e-9,80e-9,115e-9,80e-9,115e-9,80e-9,115e-9,80e-9,115e-9,80e-9,115e-9]
-
-# R=np.empty((len(theta),len(omega)))
-# pol = 'p'  # Polarization.
-
-# for ii in range(0,len(theta)):
-#     for jj in range(0,len(omega)):
-#         epsilon=epsilon_creator(omega[jj],N, material_dict, material_dict_indices)
-#         gamma=magnetophotonicCrystal(omega[jj], theta[ii], N, epsilon, t, pol)
-#         R[ii][jj]=gamma*np.conj(gamma)
-# plt.plot((hbar*omega/eV).T,R[0]) 
-# #plt.plot((lambda_).T,R[0]) 
-
