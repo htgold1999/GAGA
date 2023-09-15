@@ -5,17 +5,15 @@ This is our Genetic Algorithm Gradient Ascent (GAGA) algorithm to optimize the s
 
 ### The Constraints
 The constraints of our Genetic Algorithm in our run.py file are:
-# TOTAL ITERATIONS
-n_iter = 30   
-# bits
-n_bits = 6
-# SIZE OF POPULATION
+**TOTAL ITERATIONS**
+n_iter = 30  
+**SIZE OF POPULATION**
 n_pop = 40 
-# CROSSOVER RATE
+**CROSSOVER RATE**
 r_cross = 0.9
-# MUTATION RATE
-r_mut = 1.0 / float(n_bits)
-# G FLIP PROBABILITY
+**MUTATION RATE**
+r_mut = 1/ 6
+**G FLIP PROBABILITY**
 g_flip= 0.5
 
 ### The Materials 
