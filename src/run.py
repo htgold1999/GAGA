@@ -14,10 +14,10 @@ Created on Mon Oct 24 21:44:08 2022
 
 
 from Genetic_algo import Genetic_algo
-from Find_reflectance.Epsilon_Creator import Epsilon_Creator
-from Find_reflectance.Magnetooptic2Magnetooptic import *
-from Find_reflectance.magnetophotonicCrystal import magnetophotonicCrystal
-from Find_reflectance.Refractive_index_data import *
+from Epsilon_Creator import Epsilon_Creator
+from Magnetooptic2Magnetooptic import *
+from magnetophotonicCrystal import magnetophotonicCrystal
+from Data import *
 from Data_frame_creator import material_dict_df
 
 
@@ -37,7 +37,7 @@ n_iter = 30
 # bits
 n_bits = 6
 # SIZE OF POPULATION
-n_pop = 20 
+n_pop = 40 
 # CROSSOVER RATE
 r_cross = 0.9
 # MUTATION RATE
@@ -49,7 +49,7 @@ g_flip= 0.5
 
 lambda_=np.linspace(10*(10**-6),2.25*(10**-5),600)
 
-unit_cells=[[1,5],[2,5]]
+unit_cells=[[1,3]]
 
 x=Epsilon_Creator()
 material_dictionary=x.material_dict()
