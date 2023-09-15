@@ -5,7 +5,7 @@ This is our Genetic Algorithm Gradient Ascent (GAGA) algorithm to optimize the s
 
 ### The Constraints
 The constraints of our Genetic Algorithm in our run.py file are:
-**TOTAL ITERATIONS**
+**TOTAL ITERATIONS** \n
 n_iter = 30  
 **SIZE OF POPULATION**
 n_pop = 40 
