@@ -520,9 +520,9 @@ class Epsilon_Creator():
         return eps_Air
    
     def material_dict(self):
-        material_dict = { 0:{"Air": {"function": self.Air, "isotropic":1}},1:{"TiO2": {"function": self.TiO2_eps, "isotropic":1}, "SiO2": {"function":self.SiO2_eps,"isotropic":1}}, 2:{'MgO': {"function":self.MgO_eps,"isotropic":1}}, 
-                          3:{"Ag": {"function":self.Ag_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1}},
-                          4:{"weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},
+        material_dict = { 0:{"Air": {"function": self.Air, "isotropic":1}},1:{"TiO2": {"function": self.TiO2_eps, "isotropic":1}, "SiO2": {"function":self.SiO2_eps,"isotropic":1},'MgO': {"function":self.MgO_eps,"isotropic":1}}, 
+                          2:{"Ag": {"function":self.Ag_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1}},
+                          3:{"weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},
                              "weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0}}}
         
     
