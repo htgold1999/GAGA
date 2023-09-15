@@ -4,25 +4,20 @@
 This is our Genetic Algorithm Gradient Ascent (GAGA) algorithm to optimize the structure of a 1D magnetophotonic crystal comprised of Weyl semimetals to maximize non-reciprocity.
 
 ### The Constraints
-The constraints of our Genetic Algorithm in our run.py file are:
-**TOTAL ITERATIONS**   
-
+The constraints of our Genetic Algorithm in our run.py file are:<br>
+**TOTAL ITERATIONS**   <br>
 n_iter = 30  
 
 **SIZE OF POPULATION** <br>
-
 n_pop = 40   
 
-**CROSSOVER RATE**  
-
+**CROSSOVER RATE**  <br>
 r_cross = 0.9
 
-**MUTATION RATE**
-
+**MUTATION RATE** <br>
 r_mut = 1/ 6
 
-**G FLIP PROBABILITY**
-
+**G FLIP PROBABILITY** <br>
 g_flip= 0.5
 
 ### The Materials 
