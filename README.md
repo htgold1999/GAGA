@@ -9,7 +9,7 @@ The constraints of our Genetic Algorithm in our run.py file are:
 
 n_iter = 30  
 
-**SIZE OF POPULATION**
+**SIZE OF POPULATION** <br>
 
 n_pop = 40   
 
