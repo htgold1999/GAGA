@@ -176,30 +176,25 @@ class Epsilon_Creator():
     
     def InAs_eps(self,lambda_):
         
-        
        
-        material_df=self.df["weyl_material_1"] # need to get refractive index given pandas dataframe
-        real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
-        imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
-        eps_t = real_num_t +j*imag_num_t
-        
-        real_num_l=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_L_R"])
-        imag_num_l=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_L_I"])
-        eps_l = real_num_l +j*imag_num_l
-       
-        omega = 
+        omega = 2*pi*c/lambda_
         B_field=0.12 # [T] Magnetic field
         eps_inf = 11.603 # [1] 
         omega_p = 0.347*eV # [J] plasma frequency
         gamma = 2.85e-3*eV  # [J] Drude damping constant for Fermi arc surface states
         n = (7.24*10**18)*10**6 # [m^-3] Carrier density
         m_eff = 0.083*m_e # [kg] Effective mass
-        omega_c = B_field*eV/m_eff # [] 
-        eps_t = eps_inf - (omega_p**2)()
+        omega_c = B_field*eV/m_eff # [] #check units
+        eps_t = eps_inf - ((omega_p**2)(omega+j*gamma)/(omega(((omega+j*gamma)**2) -omega_c**2)))
         
-        g = j*
-           
+        g = (-j*(omega_p**2)*omega_c)/(omega(((omega+j*gamma)**2) -omega_c**2))
+        eps_l =eps_t   
         return eps_t,eps_l, g 
+    
+    # Look at this for different doping of InAs https://www.spiedigitallibrary.org/journals/journal-of-photonics-for-energy/volume-10/issue-02/025503/Design-of-an-indium-arsenide-cell-for-near-field-thermophotovoltaic/10.1117/1.JPE.10.025503.full?SSO=1
+    
+    
+    
     def weyl_material_1_eps (self,lambda_):
       
         material_df=self.df["weyl_material_1"] # need to get refractive index given pandas dataframe
