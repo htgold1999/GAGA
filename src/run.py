@@ -27,7 +27,7 @@ from Data_frame_creator import material_dict_df
 # TOTAL ITERATIONS
 n_iter = 30   
 # SIZE OF POPULATION
-n_pop = 40 
+n_pop = 40 # needs to be an even number
 # CROSSOVER RATE
 r_cross = 0.9
 # MUTATION RATE
