@@ -40,12 +40,13 @@ epsilon_0 = 8.85419e-12
 
 import random
 class Genetic_algo():
-    def __init__(self,lambda_,layers=[],pol=[],thick=[],unit_cell_pairs=None,unit_cell=None,g_flip=0, material_dict_=None):
+    def __init__(self,lambda_,theta,layers=[],pol=[],thick=[],unit_cell_pairs=None,unit_cell=None,g_flip=0, material_dict_=None):
         #def __init__(self,omega,materials,layers=[],pol=[],thetas=[],thick=[]):
     #other possible parameters:b_field
         #self.omega=omega   #omega in rad/s
         #self.thetas=thetas #list of possible thetas
         #self.eps_obj=epsilon_creator_obj # contains epsilon creator object from run.py
+        self.theta =theta # in degrees
         self.material_dict_=material_dict_
         self.unit_cell_pairs=unit_cell_pairs
         self.unit_cell=unit_cell
@@ -117,7 +118,7 @@ class Genetic_algo():
         N=x[0][0]
        
         
-        theta = np.array([-55,55])
+        theta = self.theta
         theta = theta*(pi/180)  # Angle of incidence [rad].
      
         material_dict_indices=x[1]
@@ -133,7 +134,10 @@ class Genetic_algo():
         for ii in range(0,len(theta)):
             for jj in range(0,len(self.lambda_)):
                 z=Epsilon_Creator(dataframe=material_dict_df,lambda__=(self.lambda_[jj]),  N_=N,  material_dict_indices_=material_dict_indices)
+                
                 epsilon=z.create_epsilon()
+                # print("epsilon")
+                # print(epsilon)
                 Rp[ii][jj], Tp[ii][jj]=magnetophotonicCrystal(self.lambda_[jj], theta[ii], N, epsilon, t, 'p')
                 Rs[ii][jj], Ts[ii][jj]=magnetophotonicCrystal(self.lambda_[jj], theta[ii], N, epsilon, t, 's')
               
@@ -146,7 +150,23 @@ class Genetic_algo():
         contrast =abs(Ap[0]-Ap[1])
         maxcontrast =max(contrast)
         idx=np.where(contrast==maxcontrast)
-        
+        # print("idx")
+        # print(idx)
+        # print("type(idx)")
+        # print(type(idx))
+        # print("type(idx[0])")
+        # print(type(idx[0]))
+        # print("type(idx[0][0])")
+        # print(type(idx[0][0]))
+        # print(idx[0][0])
+        # print("np.size(idx)")
+        # print(np.size(idx))
+        # print("np.size(idx[0])")
+        # print(np.size(idx[0]))
+        # print("idx[0].tolist()")
+       
+        if len(idx[0])>1:
+            idx=idx[0][0]
         if Ap[0][idx]> Ap[1][idx]:
             FOM = (Ap[0][idx]+As[0][idx])/(Ap[1][idx]+As[1][idx])
         else: 

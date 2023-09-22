@@ -14,9 +14,7 @@ from math import *
 import matplotlib.pyplot as plt
 import cmath #
 j=(cmath.sqrt(-1))
-import scipy 
 
-from scipy.interpolate import interp1d
 
 
       # Physical constants.
@@ -185,10 +183,10 @@ class Epsilon_Creator():
         n = (7.24*10**18)*10**6 # [m^-3] Carrier density
         m_eff = 0.083*m_e # [kg] Effective mass
         omega_c = B_field*eV/m_eff # [] #check units
-        eps_t = eps_inf - ((omega_p**2)(omega+j*gamma)/(omega(((omega+j*gamma)**2) -omega_c**2)))
-        
-        g = (-j*(omega_p**2)*omega_c)/(omega(((omega+j*gamma)**2) -omega_c**2))
-        eps_l =eps_t   
+        eps_t = eps_inf - ((omega_p**2)*(omega+j*gamma)/(omega*(((omega+j*gamma)**2) -omega_c**2)))
+
+        g = (-j*(omega_p**2)*omega_c)/(omega*(((omega+j*gamma)**2) -omega_c**2))
+        eps_l =eps_t     
         return eps_t,eps_l, g 
     
     # Look at this for different doping of InAs https://www.spiedigitallibrary.org/journals/journal-of-photonics-for-energy/volume-10/issue-02/025503/Design-of-an-indium-arsenide-cell-for-near-field-thermophotovoltaic/10.1117/1.JPE.10.025503.full?SSO=1
@@ -455,7 +453,8 @@ class Epsilon_Creator():
         material_dict = { 0:{"Air": {"function": self.Air, "isotropic":1}},1:{"TiO2": {"function": self.TiO2_eps, "isotropic":1}, "SiO2": {"function":self.SiO2_eps,"isotropic":1},'MgO': {"function":self.MgO_eps,"isotropic":1}}, 
                           2:{"Ag": {"function":self.Ag_eps,"isotropic":1}, "Pt": {"function":self.Pt_eps,"isotropic":1}},
                           3:{"weyl_material_1": {"function":self.weyl_material_1_eps,"isotropic":0},
-                             "weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0}}}
+                             "weyl_material_2": {"function":self.weyl_material_2_eps,"isotropic":0}},
+                          4:{"Si": {"function":self.Si_eps,"isotropic":1}},5:{"InAs": {"function":self.InAs_eps,"isotropic":0}}}
         
     
        
@@ -487,9 +486,9 @@ class Epsilon_Creator():
                 
             elif material_dict[ ii[0]][ ii[1]]["isotropic"]==0:
                  eps_T,eps_L, g=material_dict[ ii[0]][ ii[1]]["function"](self.lambda_)
-                
-                 epsilon[count][0]= eps_T
                
+                 epsilon[count][0]= eps_T
+                
                  epsilon[count][1]= eps_L
                  
                  if ii[2]=='g':

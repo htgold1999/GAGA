@@ -37,13 +37,15 @@ g_flip= 0.5
 
 
 
-lambda_=np.linspace(10*(10**-6),2.25*(10**-5),600)
+# lambda_=np.linspace(10*(10**-6),2.25*(10**-5),600)
+lambda_=np.linspace(6*(10**-6),1.6*(10**-5),600)
 
 unit_cells=[[1,3]]
-
+unit_cells=[[4,5]]
+theta = np.array([-55,55])
 x=Epsilon_Creator()
 material_dictionary=x.material_dict()
-y=Genetic_algo(lambda_,[10],['p'],np.linspace(60,450,400)*(10**-9),unit_cell_pairs=5,unit_cell=unit_cells,g_flip=g_flip, material_dict_=material_dictionary) 
+y=Genetic_algo(lambda_,theta,[30],['p'],np.linspace(60,450,400)*(10**-9),unit_cell_pairs=15,unit_cell=unit_cells,g_flip=g_flip, material_dict_=material_dictionary) 
 best_design, score, score_tracker,best_vert_dist=y.genetic_algorithm( n_iter, n_pop, r_cross, r_mut)
 
 print('GENETIC ALGORITHM COMPLETED!')
