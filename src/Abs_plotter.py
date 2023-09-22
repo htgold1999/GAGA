@@ -129,7 +129,7 @@ x=[[8, 'p'], [[ (5, 'weyl_material_2', 'g')], [(2, 'MgO', 'g'), (5, 'weyl_materi
 
 
 
-Rp,Rs,T,Ap,As,FOM,lamb=Reflectivity_plotter(x,lambda_,theta)
+Rp,Rs,T,Ap,As,FOM,lamb=Abs_plotter(x,lambda_,theta)
 omega=2*pi*c/lamb
 Energy=hbar*omega/eV
 #%%

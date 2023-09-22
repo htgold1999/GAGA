@@ -33,11 +33,9 @@ epsilon_0 = 8.85419e-12
 class Epsilon_Creator():
     #lambda_ is in meters
     def __init__(self,dont_care=0, dataframe=None,lambda__=None,N_=None,material_dict_indices_=None):
-        #self.df=Data_frame_creator()
+       
         self.df=dataframe
-        self.dont_care=dont_care # if 1, we dont care about the proper wavelength range
-        #dff=self.df["SiO2"]
-        #print(dff["Epsilon"].astype(float).to_list())
+        self.dont_care=dont_care #don't care about imaginary part
         self.lambda_=lambda__ #lambda
         #self.omega=omega #omega
         self.N=N_ #number of layers
@@ -45,85 +43,80 @@ class Epsilon_Creator():
         self.material_dict_indices=material_dict_indices_ #list of keys corresponding to materials in the material dictionary
     def df_to_wavelength_list(self,df):
           wavelength_list= df["Wavelength"].astype(float).to_list()  #converts the dataframe column to a pandas series of floats then a list of floats     
-          #not done yet
+         
           return wavelength_list
     def find_nearest(self,lst, value):
-        #print("lambda value")
-        #print(value)
+       
         idx=np.argmin(np.abs(np.array(lst)-value))
-        #print("nearest value")
-        #print(lst[idx])
+       
         
         return idx, lst[idx]
     
     def TiO2_eps(self,lambda_):
         if  self.dont_care:
-            ##This data is for thin films, but the thicknesses are thin enough by the standards of the paper the data came from 
-            material_df=self.df["TiO2"] # need to get refractive index given pandas dataframe
+           
+            material_df=self.df["TiO2"] 
             real_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_R"].astype(float).to_list())
             imag_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_I"].astype(float).to_list())
-            eps_TiO2 = real_num +j*imag_num
-            eps_TiO2 =np.real(eps_TiO2)
+            eps_TiO2 = real_num 
+           
         else:
-            ##This data is for thin films, but the thicknesses are thin enough by the standards of the paper the data came from 
-            material_df=self.df["TiO2"] # need to get refractive index given pandas dataframe
+           
+            material_df=self.df["TiO2"] 
             real_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_R"].astype(float).to_list())
             imag_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_I"].astype(float).to_list())
             eps_TiO2 = real_num +j*imag_num
-            #_______________________________
-            # interp_1d= interp1d(material_df["Wavelength"].astype(float).to_list(),(material_df["Epsilon_R"]+j*material_df["Epsilon_I"]))
-            
-            # eps_TiO2 = interp_1d(lambda_micrometer)
-            
-            ##
-            
-            # wavelength_list=self.df_to_wavelength_list(material_df)
-            # idx,_=self.find_nearest(wavelength_list, lambda_micrometer)
-            # eps_TiO2=material_df["Epsilon_R"][idx] +j*material_df["Epsilon_I"][idx] 
-            
+           
        
         return eps_TiO2
     def SiO2_eps(self,lambda_):
         
         
         
-        #print("self.df[SiO2]")
-        #print(self.df)
+       
         if (lambda_*1000000)<7:
             eps_SiO2=1+((((0.6961663)*lambda_**2)/((lambda_**2)-(0.0684043**2))) + (((0.4079426)*lambda_**2)/((lambda_**2)-(0.1162414**2))) + (((0.8974794)*lambda_**2)/((lambda_**2)-(9.896161**2))))
             eps_SiO2=eps_SiO2+0.00014657*j
         elif  self.dont_care:
-            #materila_df=self.df["SiO2"] # need to get refractive index given pandas dataframe
-            material_df=self.df["SiO2"] # need to get refractive index given pandas dataframe
+            
+            material_df=self.df["SiO2"] 
             real_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_R"].astype(float).to_list())
             imag_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_I"].astype(float).to_list())
-            eps_SiO2 = real_num +j*imag_num
-            eps_SiO2 = np.real(eps_SiO2)
+            eps_SiO2 = real_num 
+           
             
         else:
-            #materila_df=self.df["SiO2"] # need to get refractive index given pandas dataframe
-            material_df=self.df["SiO2"] # need to get refractive index given pandas dataframe
+           
+            material_df=self.df["SiO2"] 
             real_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_R"].astype(float).to_list())
             imag_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_I"].astype(float).to_list())
             eps_SiO2 = real_num +j*imag_num
             
-            #eps_SiO2 = np.real(eps_SiO2)
-            #_________________________________
-            # interp_1d= interp1d(material_df["Wavelength"].astype(float).to_list(),(material_df["Epsilon_R"]+j*material_df["Epsilon_I"]))
             
-            # eps_SiO2 = interp_1d(lambda_micrometer)
-            
-            
-            # wavelength_list=self.df_to_wavelength_list(material_df)
-            # idx,_=self.find_nearest(wavelength_list, lambda_micrometer)
-            # eps_SiO2=material_df["Epsilon_R"][idx] +j*material_df["Epsilon_I"][idx] 
-            
-       
         return eps_SiO2
-    
+    def Si_eps(self,lambda_):
+        
+        
+        if  self.dont_care:
+            
+            material_df=self.df["Si"] 
+            real_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_R"].astype(float).to_list())
+            # imag_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_I"].astype(float).to_list())
+            eps_SiO2 = real_num 
+            
+            
+        else:
+            
+            material_df=self.df["Si"] 
+            real_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_R"].astype(float).to_list())
+            # imag_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_I"].astype(float).to_list())
+            eps_Si = real_num #+j*imag_num
+            
+           
+        return eps_Si
     def HfO2_eps(self,lambda_):
         
-        lambda_micrometer=lambda_*1000000
+        lambda_micrometer_to_m=lambda_*1000000
         if  False:
             eps_SiO2=1.46**2
             eps_SiO2=(1.7 +j*0.3)**2
@@ -132,7 +125,7 @@ class Epsilon_Creator():
         
             material_df=self.df["HfO2"] # need to get refractive index given pandas dataframe
             wavelength_list=self.df_to_wavelength_list(material_df)
-            idx,_=self.find_nearest(wavelength_list, lambda_micrometer)
+            idx,_=self.find_nearest(wavelength_list, lambda_micrometer_to_n)
             eps_HfO2=material_df["Epsilon_R"][idx] +j*material_df["Epsilon_Im"][idx] 
                 
             
@@ -165,25 +158,50 @@ class Epsilon_Creator():
         
         return eps_MgO
     def Pt_eps(self,lambda_):
-        lambda_micrometer=lambda_*1000000
-        if  0.00236 <= lambda_micrometer<=0.12157 or self.dont_care :
+        lambda_micrometer_to_m=lambda_*1000000
+        if  0.00236 <= lambda_micrometer_to_m<=0.12157 or self.dont_care :
             omega_plasma=5.145*(eV/hbar) #Plasma Frequency of Pt [rad/sec]
             omega= (2*pi*c)/lambda_
             gamma_=(69.2*(10**-3))*(eV/hbar)  #drude damping
             eps_Pt= 1- ((omega_plasma**2)/((omega**2)+(j*omega*gamma_)))
-        elif 0.248<= lambda_micrometer<= 12.4 :
+        elif 0.248<= lambda_micrometer_to_m<= 12.4 :
             material_df=self.df["Pt"] # need to get refractive index given pandas dataframe
             wavelength_list=self.df_to_wavelength_list(material_df)
-            idx,_=self.find_nearest(wavelength_list, lambda_micrometer)
+            idx,_=self.find_nearest(wavelength_list, lambda_micrometer_to_m)
             eps_Pt=material_df["Epsilon"][idx] 
         else:
             print("Other Pt_eps wavelengths not coded yet")
             eps_Pt=10000
         return eps_Pt
     
-
+    def InAs_eps(self,lambda_):
+        
+        
+       
+        material_df=self.df["weyl_material_1"] # need to get refractive index given pandas dataframe
+        real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
+        imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
+        eps_t = real_num_t +j*imag_num_t
+        
+        real_num_l=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_L_R"])
+        imag_num_l=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_L_I"])
+        eps_l = real_num_l +j*imag_num_l
+       
+        omega = 
+        B_field=0.12 # [T] Magnetic field
+        eps_inf = 11.603 # [1] 
+        omega_p = 0.347*eV # [J] plasma frequency
+        gamma = 2.85e-3*eV  # [J] Drude damping constant for Fermi arc surface states
+        n = (7.24*10**18)*10**6 # [m^-3] Carrier density
+        m_eff = 0.083*m_e # [kg] Effective mass
+        omega_c = B_field*eV/m_eff # [] 
+        eps_t = eps_inf - (omega_p**2)()
+        
+        g = j*
+           
+        return eps_t,eps_l, g 
     def weyl_material_1_eps (self,lambda_):
-        # lambda_micrometer=lambda_*1000000
+      
         material_df=self.df["weyl_material_1"] # need to get refractive index given pandas dataframe
         real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
         imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
@@ -228,7 +246,7 @@ class Epsilon_Creator():
        
         return eps_t,eps_l, g 
     def weyl_material_1_EF_01_eps (self,lambda_):
-        # lambda_micrometer=lambda_*1000000
+       
         material_df=self.df["weyl_material_1_EF=0.1"] # need to get refractive index given pandas dataframe
         real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
         imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
@@ -251,7 +269,7 @@ class Epsilon_Creator():
        
         return eps_t,eps_l, g 
     def weyl_material_1_EF_007_eps (self,lambda_):
-        # lambda_micrometer=lambda_*1000000
+        # lambda_micrometer_to_m=lambda_*1000000
         material_df=self.df["weyl_material_1_EF=0.07"] # need to get refractive index given pandas dataframe
         real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
         imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
@@ -274,7 +292,7 @@ class Epsilon_Creator():
        
         return eps_t,eps_l, g 
     def weyl_material_1_EF_02_eps (self,lambda_):
-        # lambda_micrometer=lambda_*1000000
+        # lambda_micrometer_to_m=lambda_*1000000
         material_df=self.df["weyl_material_1_EF=0.2"] # need to get refractive index given pandas dataframe
         real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
         imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
@@ -297,7 +315,7 @@ class Epsilon_Creator():
        
         return eps_t,eps_l, g
     def weyl_material_2_eps (self,lambda_):
-        # lambda_micrometer=lambda_*1000000
+        # lambda_micrometer_to_m=lambda_*1000000
         material_df=self.df["weyl_material_2"] # need to get refractive index given pandas dataframe
             
         real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
@@ -342,7 +360,7 @@ class Epsilon_Creator():
        
         return eps_t,eps_l, g 
     def weyl_material_2_EF_01_eps (self,lambda_):
-        # lambda_micrometer=lambda_*1000000
+        # lambda_micrometer_to_m=lambda_*1000000
         material_df=self.df["weyl_material_2_EF=0.1"] # need to get refractive index given pandas dataframe
         real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
         imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
@@ -365,7 +383,7 @@ class Epsilon_Creator():
        
         return eps_t,eps_l, g 
     def weyl_material_2_EF_007_eps (self,lambda_):
-        # lambda_micrometer=lambda_*1000000
+        # lambda_micrometer_to_m=lambda_*1000000
         material_df=self.df["weyl_material_2_EF=0.07"] # need to get refractive index given pandas dataframe
         real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
         imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
@@ -388,7 +406,7 @@ class Epsilon_Creator():
        
         return eps_t,eps_l, g 
     def weyl_material_2_EF_02_eps (self,lambda_):
-        # lambda_micrometer=lambda_*1000000
+        # lambda_micrometer_to_m=lambda_*1000000
         material_df=self.df["weyl_material_2_EF=0.2"] # need to get refractive index given pandas dataframe
         real_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_R"])
         imag_num_t=np.interp(lambda_,material_df["Wavelength"],material_df["Epsilon_T_I"])
@@ -412,11 +430,11 @@ class Epsilon_Creator():
         return eps_t,eps_l, g 
     
     def Ag_eps(self,lambda_):
-        lambda_micrometer=lambda_*1000000
-        if  0.1879<= lambda_micrometer<=1.9370 or 2.480e-06<= lambda_micrometer<=248 or 0.270<= lambda_micrometer<=24.9 or self.dont_care:
+        lambda_micrometer_to_m=lambda_*1000000
+        if  0.1879<= lambda_micrometer_to_m<=1.9370 or 2.480e-06<= lambda_micrometer_to_m<=248 or 0.270<= lambda_micrometer_to_m<=24.9 or self.dont_care:
             material_df=self.df["Ag"] # need to get refractive index given pandas dataframe
             wavelength_list=self.df_to_wavelength_list(material_df)
-            idx,_=self.find_nearest(wavelength_list, lambda_micrometer)
+            idx,_=self.find_nearest(wavelength_list, lambda_micrometer_to_m)
             eps_Ag=material_df["Epsilon"][idx] 
         else:
             print("Other Ag_eps wavelengths not coded yet")
@@ -424,11 +442,11 @@ class Epsilon_Creator():
         
         return eps_Ag
     def Au_eps(self,lambda_):
-        lambda_micrometer=lambda_*1000000
-        if  0.667<= lambda_micrometer<=286 or self.dont_care:
+        lambda_micrometer_to_m=lambda_*1000000
+        if  0.667<= lambda_micrometer_to_m<=286 or self.dont_care:
             material_df=self.df["Au"] # need to get refractive index given pandas dataframe
             wavelength_list=self.df_to_wavelength_list(material_df)
-            idx,_=self.find_nearest(wavelength_list, lambda_micrometer)
+            idx,_=self.find_nearest(wavelength_list, lambda_micrometer_to_m)
             eps_Au=material_df["Epsilon"][idx] 
         else:
             print("Other Au_eps wavelengths not coded yet")
