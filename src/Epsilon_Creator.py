@@ -180,36 +180,8 @@ class Epsilon_Creator():
             print("Other Pt_eps wavelengths not coded yet")
             eps_Pt=10000
         return eps_Pt
-    def Ge_eps(self,lambda_):
-        #in THz regime
-        
-        if self.dont_care :
-           
-            eps_Ge= 16
-        
-        else:
-            print("Other Ge_eps wavelengths not coded yet")
-            eps_Ge=10000
-        return eps_Ge
     
-    
-    def Co2MnGa_eps (self,lambda_):
-        lambda_micrometer=lambda_*1000000
-        if 8.254<= lambda_micrometer<=99.9867 or self.dont_care:
-            material_df=self.df["Co2MnGa"] # need to get refractive index given pandas dataframe
-            wavelength_list=self.df_to_wavelength_list(material_df)
-            idx,_=self.find_nearest(wavelength_list, lambda_)
-            eps_t=material_df["Epsilon_T_R"][idx] + j*material_df["Epsilon_T_I"][idx] 
-            # print("eps_t")
-            # print(eps_t)
-            eps_l=material_df["Epsilon_L_R"][idx] + j*material_df["Epsilon_L_I"][idx] 
-            g=material_df["g_R"][idx] + j*material_df["g_I"][idx]
-        else:
-            print("Other Co2MnGa_eps wavelengths not coded yet")
-            eps_t=10000
-            eps_l=10000
-            g=0
-        return eps_t,eps_l, g # z and x are transverse and longitudinal components (respectively) of the dielectric tensor see source https://dspace.mit.edu/bitstream/handle/1721.1/132930/PhysRevB.102.165417.pdf?sequence=1
+
     def weyl_material_1_eps (self,lambda_):
         # lambda_micrometer=lambda_*1000000
         material_df=self.df["weyl_material_1"] # need to get refractive index given pandas dataframe
@@ -438,59 +410,6 @@ class Epsilon_Creator():
         # g=material_df["g"][idx]
        
         return eps_t,eps_l, g 
-    def weyl_material_3_eps (self,lambda_):
-        lambda_micrometer=lambda_*1000000
-        if self.dont_care:
-            material_df=self.df["weyl_material_3"] # need to get refractive index given pandas dataframe
-            wavelength_list=self.df_to_wavelength_list(material_df)
-            idx,_=self.find_nearest(wavelength_list, lambda_)
-            eps_t=material_df["Epsilon_T_R"][idx] + j*material_df["Epsilon_T_I"][idx] 
-            # print("eps_t")
-            # print(eps_t)
-            eps_l=material_df["Epsilon_L_R"][idx] + j*material_df["Epsilon_L_I"][idx] 
-            g=material_df["g"][idx]
-        else:
-            print("Other weyl_material_3_eps wavelengths not coded yet")
-            eps_t=10000
-            eps_l=10000
-            g=0
-        return eps_t,eps_l, g
-    
-    def weyl_material_4_eps (self,lambda_):
-        lambda_micrometer=lambda_*1000000
-        if self.dont_care:
-            material_df=self.df["weyl_material_4"] # need to get refractive index given pandas dataframe
-            wavelength_list=self.df_to_wavelength_list(material_df)
-            idx,_=self.find_nearest(wavelength_list, lambda_)
-            eps_t=material_df["Epsilon_T_R"][idx] + j*material_df["Epsilon_T_I"][idx] 
-            # print("eps_t")
-            # print(eps_t)
-            eps_l=material_df["Epsilon_L_R"][idx] + j*material_df["Epsilon_L_I"][idx] 
-            g=material_df["g"][idx]
-        else:
-            print("Other weyl_material_4_eps wavelengths not coded yet")
-            eps_t=10000
-            eps_l=10000
-            g=0
-        return eps_t,eps_l, g
-    
-    def weyl_material_5_eps (self,lambda_):
-        lambda_micrometer=lambda_*1000000
-        if self.dont_care:
-            material_df=self.df["weyl_material_5"] # need to get refractive index given pandas dataframe
-            wavelength_list=self.df_to_wavelength_list(material_df)
-            idx,_=self.find_nearest(wavelength_list, lambda_)
-            eps_t=material_df["Epsilon_T_R"][idx] + j*material_df["Epsilon_T_I"][idx] 
-            # print("eps_t")
-            # print(eps_t)
-            eps_l=material_df["Epsilon_L_R"][idx] + j*material_df["Epsilon_L_I"][idx] 
-            g=material_df["g"][idx]
-        else:
-            print("Other weyl_material_5_eps wavelengths not coded yet")
-            eps_t=10000
-            eps_l=10000
-            g=0
-        return eps_t,eps_l, g
     
     def Ag_eps(self,lambda_):
         lambda_micrometer=lambda_*1000000
