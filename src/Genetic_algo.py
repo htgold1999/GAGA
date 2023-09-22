@@ -232,7 +232,7 @@ class Genetic_algo():
                             
  ###########################################################################################                           
                             
-    def genetic_algorithm(self, n_bits, n_iter, n_pop, r_cross, r_mut):
+    def genetic_algorithm(self, n_iter, n_pop, r_cross, r_mut):
         
         timestr = time.strftime("%Y%m%d-%H%M%S")
         

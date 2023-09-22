@@ -17,7 +17,7 @@ sys.path.append('./')
 import numpy as np
 j=(cmath.sqrt(-1))
 
-from Find_reflectance.Magnetooptic2Magnetooptic import *
+from Magnetooptic2Magnetooptic import *
 # Function to calculate the reflection coefficient of an N-layer, 1D
 # magnetophotonic crystal in the Voigt configuration.
 # 
