@@ -1,7 +1,7 @@
 # IR-GAGA
 
 ## The General GAGA Algorithm
-Coded by Hannah Gold
+Coded by Hannah Gold <br>
 This is our Genetic Algorithm Gradient Ascent (GAGA) algorithm to optimize the structure of a 1D magnetophotonic crystal comprised of Weyl semimetals to maximize non-reciprocity.
 
 ### The Constraints
