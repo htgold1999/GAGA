@@ -32,5 +32,5 @@ All materials are included as .xls files in data. It is important that any addit
 This code uses a material library of SiO2, TiO2, MgO, and two Weyl semimetals. There is additional data saved for Ag, HfO2, and Pt as well, but the material dictionary in Epsilon_creator.py would need to add those materials.
 
 ## The Reflectance and Transmission Coefficients Calculation 
-Coded by Simo Pajovic
+Coded by Simo Pajovic <br>
 This portion of the code is found in Magnetooptic2Magnetooptic.py and magnetophotonicCrystal.py and is a recursion which will calculate the reflectance and transmission coefficients. The result is completely analytical and can be generalized to all anisotropic media. The result is the same as the transfer matrix method. From these coefficients, the reflectance and transmittance can be found-- and since the absorptance = 1-(reflectance+transmittance), the absorptance is also easily calculated. This absorptance can be found for s- and p-polarizations respectively and is usd in our FOM. 
