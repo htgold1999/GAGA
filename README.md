@@ -1,4 +1,4 @@
-# IR-GAGA
+# GAGA
 
 ## The General GAGA Algorithm
 Coded by Hannah Gold <br>
