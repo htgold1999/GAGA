@@ -150,20 +150,7 @@ class Genetic_algo():
         contrast =abs(Ap[0]-Ap[1])
         maxcontrast =max(contrast)
         idx=np.where(contrast==maxcontrast)
-        # print("idx")
-        # print(idx)
-        # print("type(idx)")
-        # print(type(idx))
-        # print("type(idx[0])")
-        # print(type(idx[0]))
-        # print("type(idx[0][0])")
-        # print(type(idx[0][0]))
-        # print(idx[0][0])
-        # print("np.size(idx)")
-        # print(np.size(idx))
-        # print("np.size(idx[0])")
-        # print(np.size(idx[0]))
-        # print("idx[0].tolist()")
+       
        
         if len(idx[0])>1:
             idx=idx[0][0]
