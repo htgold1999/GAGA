@@ -22,7 +22,28 @@ r_mut = 1/ 6
 g_flip= 0.5
 
 ### How to Run
-Run the run.py file and change the parameters if necessary. Additional materials can be added and paired with one another (see below described in materials). Iteration information is saved in the Iterations folder. The output will be first the material pairings (if specified, the materials will be paired and the number in front is not the layer number but the number associated with the material dictionary key), then the respective layer thicknesses. The order that the material and thicknesses are listed is from top of the structure to the bottom. There will always be one less thickness than material because the last layer is assumed to be semi-infinite.
+First install the GAGA environment (this method is for conda users, there is a pip alternative below):
+```
+conda env create -f environment.yml
+```
+Then activate the environment:
+
+```
+conda activate GAGA
+```
+If you would like to install the dependencies with pip do this instead of the previous steps:
+
+```
+pip install -r requirements.txt
+```
+Alternatively, this requirements.txt can also be installed with conda:
+```
+conda create --name GAGA --file requirements.txt
+```
+
+Run the run.py file and change the parameters if necessary. 
+
+Additional materials can be added and paired with one another (see below described in materials). Iteration information is saved in the Iterations folder. The output will be first the material pairings (if specified, the materials will be paired and the number in front is not the layer number but the number associated with the material dictionary key), then the respective layer thicknesses. The order that the material and thicknesses are listed is from top of the structure to the bottom. There will always be one less thickness than material because the last layer is assumed to be semi-infinite.
 
 ### The Materials 
 All materials are included as .xls files in data. It is important that any additional materials be saved as .xls files, the material be added as a dielectric function in Epsilon_creator.py, and the material be added to the material dictionary function (material_dict()) Epsilon_creator.py.
