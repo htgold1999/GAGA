@@ -27,10 +27,29 @@ Run the run.py file and change the parameters if necessary. Additional materials
 ### The Materials 
 All materials are included as .xls files in data. It is important that any additional materials be saved as .xls files, the material be added as a dielectric function in Epsilon_creator.py, and the material be added to the material dictionary function (material_dict()) Epsilon_creator.py.
 
---The numbers in the material_dict() function of Epsilon_creator.py are helpful for creating material pairings for the Genetic Algorithm to stick together.
---For example: [[1,3]] will randomly pair materials with the key '1' with '3', so dielectric materials can be paired with Weyl semimetals.
+* The numbers in the material_dict() function of Epsilon_creator.py are helpful for creating material pairings for the Genetic Algorithm to stick together.
+* For example: [[1,3]] will randomly pair materials with the key '1' with '3', so dielectric materials can be paired with Weyl semimetals.
 This code uses a material library of SiO2, TiO2, MgO, and two Weyl semimetals. There is additional data saved for Ag, HfO2, and Pt as well, but the material dictionary in Epsilon_creator.py would need to add those materials.
 
 ## The Reflectance and Transmission Coefficients Calculation 
 Coded by Simo Pajovic <br>
 This portion of the code is found in Magnetooptic2Magnetooptic.py and magnetophotonicCrystal.py and is a recursion which will calculate the reflectance and transmission coefficients. The result is completely analytical and can be generalized to all anisotropic media. The result is the same as the transfer matrix method. From these coefficients, the reflectance and transmittance can be found-- and since the absorptance = 1-(reflectance+transmittance), the absorptance is also easily calculated. This absorptance can be found for s- and p-polarizations respectively and is usd in our FOM. 
+
+
+# To cite
+```
+@article{Gold2024,
+  title = {GAGA for nonreciprocal emitters: genetic algorithm gradient ascent optimization of compact magnetophotonic crystals},
+  volume = {13},
+  ISSN = {2192-8614},
+  url = {http://dx.doi.org/10.1515/nanoph-2023-0598},
+  DOI = {10.1515/nanoph-2023-0598},
+  number = {5},
+  journal = {Nanophotonics},
+  publisher = {Walter de Gruyter GmbH},
+  author = {Gold,  Hannah and Pajovic,  Simo and Mukherjee,  Abhishek and Boriskina,  Svetlana V.},
+  year = {2024},
+  month = jan,
+  pages = {773–792}
+}
+```
