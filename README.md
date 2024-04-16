@@ -34,3 +34,22 @@ This code uses a material library of SiO2, TiO2, MgO, and two Weyl semimetals. T
 ## The Reflectance and Transmission Coefficients Calculation 
 Coded by Simo Pajovic <br>
 This portion of the code is found in Magnetooptic2Magnetooptic.py and magnetophotonicCrystal.py and is a recursion which will calculate the reflectance and transmission coefficients. The result is completely analytical and can be generalized to all anisotropic media. The result is the same as the transfer matrix method. From these coefficients, the reflectance and transmittance can be found-- and since the absorptance = 1-(reflectance+transmittance), the absorptance is also easily calculated. This absorptance can be found for s- and p-polarizations respectively and is usd in our FOM. 
+
+
+### To cite
+```
+@article{Gold2024,
+  title = {GAGA for nonreciprocal emitters: genetic algorithm gradient ascent optimization of compact magnetophotonic crystals},
+  volume = {13},
+  ISSN = {2192-8614},
+  url = {http://dx.doi.org/10.1515/nanoph-2023-0598},
+  DOI = {10.1515/nanoph-2023-0598},
+  number = {5},
+  journal = {Nanophotonics},
+  publisher = {Walter de Gruyter GmbH},
+  author = {Gold,  Hannah and Pajovic,  Simo and Mukherjee,  Abhishek and Boriskina,  Svetlana V.},
+  year = {2024},
+  month = jan,
+  pages = {773–792}
+}
+```
