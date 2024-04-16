@@ -46,6 +46,23 @@ Run the run.py file and change the parameters if necessary.
 Additional materials can be added and paired with one another (see below described in materials). Iteration information is saved in the Iterations folder. The output will be first the material pairings (if specified, the materials will be paired and the number in front is not the layer number but the number associated with the material dictionary key), then the respective layer thicknesses. The order that the material and thicknesses are listed is from top of the structure to the bottom. There will always be one less thickness than material because the last layer is assumed to be semi-infinite.
 
 ### The Materials 
+
+* Unit cells guarantee that one material from each key are paired together 
+* The current material dictionary is located in Epsilon_creator.py
+
+
+**0: Air**\
+**1: TiO2,SiO2, MgO**\
+**2: Ag,Pt**\
+**3: weyl_material_1, weyl_material_2**\
+**4: Si**\
+**5: InAs**\
+**6: GaAs**\
+**7: InSb**
+
+
+
+
 All materials are included as .xls files in data. It is important that any additional materials be saved as .xls files, the material be added as a dielectric function in Epsilon_creator.py, and the material be added to the material dictionary function (material_dict()) Epsilon_creator.py.
 
 * The numbers in the material_dict() function of Epsilon_creator.py are helpful for creating material pairings for the Genetic Algorithm to stick together.
