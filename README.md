@@ -27,8 +27,8 @@ Run the run.py file and change the parameters if necessary. Additional materials
 ### The Materials 
 All materials are included as .xls files in data. It is important that any additional materials be saved as .xls files, the material be added as a dielectric function in Epsilon_creator.py, and the material be added to the material dictionary function (material_dict()) Epsilon_creator.py.
 
---The numbers in the material_dict() function of Epsilon_creator.py are helpful for creating material pairings for the Genetic Algorithm to stick together.
---For example: [[1,3]] will randomly pair materials with the key '1' with '3', so dielectric materials can be paired with Weyl semimetals.
+* The numbers in the material_dict() function of Epsilon_creator.py are helpful for creating material pairings for the Genetic Algorithm to stick together.
+* For example: [[1,3]] will randomly pair materials with the key '1' with '3', so dielectric materials can be paired with Weyl semimetals.
 This code uses a material library of SiO2, TiO2, MgO, and two Weyl semimetals. There is additional data saved for Ag, HfO2, and Pt as well, but the material dictionary in Epsilon_creator.py would need to add those materials.
 
 ## The Reflectance and Transmission Coefficients Calculation 
