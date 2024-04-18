@@ -58,7 +58,7 @@ class Genetic_algo():
         
 
     def population(self, pop_n):
-        print("start")
+        # print("start")
         pop=[]
         
         for i in range(0,pop_n):
@@ -233,7 +233,7 @@ class Genetic_algo():
             elif i==2:
                 for kk in range(0, len(attributes[i])-1):
                     if rand() < r_mut:
-                            print('________THICKNESS MUTATION______________')
+                            # print('________THICKNESS MUTATION______________')
                             attributes[i][ii]=random.choice(self.thick)
         return attributes
                             
@@ -243,7 +243,7 @@ class Genetic_algo():
         
         timestr = time.strftime("%Y%m%d-%H%M%S")
         
-        print("inside genetic algorithm")
+      
         pop=self.population(n_pop)
         #print('pop')
         #print(pop)

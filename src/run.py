@@ -34,7 +34,25 @@ r_cross = 0.9
 r_mut = 1.0 / 6
 # G FLIP PROBABILITY
 g_flip= 0.5
+# g_flip= 0 # make this zero for InAs
 
+
+######## MATERIAL DICTIONARY #######
+
+# Unit cells guarantee that one material from each key are paired together 
+# The current material dictionary is located in Epsilon_creator.py
+
+
+# 0: Air 
+# 1: TiO2,SiO2, MgO
+# 2: Ag,Pt
+# 3: weyl_material_1, weyl_material_2
+# 4: Si 
+# 5: InAs
+# 6: GaAs 
+# 7: InSb
+
+##########################################
 
 
 lambda_=np.linspace(10*(10**-6),2.25*(10**-5),600)

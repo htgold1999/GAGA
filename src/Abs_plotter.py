@@ -126,8 +126,7 @@ Energy=hbar*omega/eV
 theta = np.array([-55,55])
 
 x=[[8, 'p'], [[ (3, 'weyl_material_2', 'g')], [(1, 'MgO', 'g'), (3, 'weyl_material_1', 'g')], [(1, 'SiO2', '-g'), (3, 'weyl_material_1', '-g')], [(3, 'weyl_material_2', 'g')], [(1, 'SiO2', '-g'), (3, 'weyl_material_2', '-g')]], [ 1.16276381909548e-07, 6.100451226281429e-08, 2.1462668341708548e-07, 1.3447264824120643e-07, 3.0874748743718705e-07,  4.102500000000031e-07, 1.0261306532663317e-07]]
-
-x= [[10, 'p'], [[(4, 'Si', '-g'), (5, 'InAs', 'g')], [(4, 'Si', 'g'), (5, 'InAs', '-g')], [(4, 'Si', '-g'), (5, 'InAs', 'g')], [(4, 'Si', '-g'), (5, 'InAs', 'g')], [(4, 'Si', 'g'), (5, 'InAs', 'g')]], [7.270676691729325e-08, 2.5646616541353385e-07, 7.36842105263158e-08, 1.4601503759398498e-07, 1.3917293233082705e-07, 2.5646616541353385e-07, 3.11203007518797e-07, 2.67218045112782e-07, 1.6849624060150377e-07]]
+## [[number of layers, polarization][[(dict_key0, material0, off_diagonal_comp0),(dict_key1, material1, off_diagonal_comp1)]...[...]], [list of thicknesses]]
 
 
 Rp,Rs,T,Ap,As,FOM,lamb=Abs_plotter(x,lambda_,theta)
