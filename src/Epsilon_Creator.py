@@ -51,6 +51,7 @@ class Epsilon_Creator():
         return idx, lst[idx]
     
     def TiO2_eps(self,lambda_):
+        # valid from 4.3e-7 m to 1.53e-6 m
         if  self.dont_care:
            
             material_df=self.df["TiO2"] 
@@ -76,7 +77,7 @@ class Epsilon_Creator():
             eps_SiO2=1+((((0.6961663)*lambda_**2)/((lambda_**2)-(0.0684043**2))) + (((0.4079426)*lambda_**2)/((lambda_**2)-(0.1162414**2))) + (((0.8974794)*lambda_**2)/((lambda_**2)-(9.896161**2))))
             eps_SiO2=eps_SiO2+0.00014657*j
         elif  self.dont_care:
-            
+            # valid 2.1e-7 m to 67e-6 m
             material_df=self.df["SiO2"] 
             real_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_R"].astype(float).to_list())
             imag_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_I"].astype(float).to_list())
@@ -84,7 +85,7 @@ class Epsilon_Creator():
            
             
         else:
-           
+           # valid 2.1e-7 m to 67e-6 m
             material_df=self.df["SiO2"] 
             real_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_R"].astype(float).to_list())
             imag_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_I"].astype(float).to_list())
@@ -100,7 +101,7 @@ class Epsilon_Creator():
             material_df=self.df["Si"] 
             real_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_R"].astype(float).to_list())
             # imag_num=np.interp(lambda_,material_df["Wavelength"].astype(float).to_list(),material_df["Epsilon_I"].astype(float).to_list())
-            eps_SiO2 = real_num 
+            eps_Si = real_num 
             
             
         else:
@@ -128,12 +129,15 @@ class Epsilon_Creator():
                 
             
         return eps_HfO2
+    
+    
     def MgO_eps(self,lambda_):
         
-        if (lambda_*1000000)< 10:
+        if (lambda_*1000000)< 10 and (lambda_*1000000)> 5.4:
             eps_MgO = 2.957019 + 0.0216485/(lambda_**2 - 0.0158650) - 0.0101373*lambda_**2 
-            eps_MgO =eps_MgO +0.0200924859999999*j
+            eps_MgO =eps_MgO 
         elif self.dont_care:
+            # valid 3.6e-7 m to 5.4e-6 m
             material_df_0=self.df["MgO_n"] # need to get refractive index given pandas dataframe
             interp_n=np.interp(lambda_,material_df_0["Wavelength"].astype(float).to_list(),material_df_0["n"].astype(float).to_list())
             
@@ -142,6 +146,7 @@ class Epsilon_Creator():
             eps_MgO = (interp_n+j*interp_k)**2
             eps_MgO = np.real(eps_MgO)
         else:
+            # valid 3.6e-7 m to 5.4e-6 m
             material_df_0=self.df["MgO_n"] # need to get refractive index given pandas dataframe
             interp_n=np.interp(lambda_,material_df_0["Wavelength"].astype(float).to_list(),material_df_0["n"].astype(float).to_list())
             
@@ -151,7 +156,6 @@ class Epsilon_Creator():
             eps_MgO = (interp_n+j*interp_k)**2
            
             #eps_MgO = np.real(eps_MgO)
-            
             
         
         return eps_MgO
